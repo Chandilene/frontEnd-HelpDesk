@@ -149,7 +149,7 @@ export function CreateTechnician() {
             <Input
               required
               className="mb-5"
-              type="text"
+              type="password"
               legend="senha"
               placeholder="Defina a senha de acesso"
               onChange={(e) => setPassword(e.target.value)}
@@ -158,7 +158,7 @@ export function CreateTechnician() {
             <Input
               required
               className="mb-5"
-              type="text"
+              type="password"
               legend="Confirme a senha"
               placeholder="Confirme a senha de acesso"
               onChange={(e) => setConfirmPassword(e.target.value)}
