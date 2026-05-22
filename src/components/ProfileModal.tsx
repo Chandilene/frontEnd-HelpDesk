@@ -40,7 +40,6 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
   const userId = auth.session?.user.id;
   const userRole = auth.session?.user.role;
   const userSchedule = auth.session?.user.schedule || undefined;
-  console.log(userSchedule);
 
   const closeModal = () => {
     setTimeout(() => {

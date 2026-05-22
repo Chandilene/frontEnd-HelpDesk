@@ -84,7 +84,8 @@ export function TableAllCustomers() {
     };
   }, [loadAllCustomers]);
 
-  if (loading) return <p>Carregando clientes...</p>;
+  if (loading)
+    return <p className="text-gray-200 m-10">Carregando clientes...</p>;
   return (
     <div>
       <h1 className="text-blue-dark text-[20px] font-bold mt-7">Clientes</h1>
