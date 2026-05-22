@@ -53,7 +53,8 @@ export function Tickets() {
     };
   }, []);
 
-  if (loading) return <p>Carregando chamados...</p>;
+  if (loading)
+    return <p className="text-gray-200 m-10">Carregando chamados...</p>;
 
   return (
     <div>

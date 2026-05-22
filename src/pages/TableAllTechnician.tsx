@@ -51,7 +51,8 @@ export function TableAllTechnician() {
     };
   }, []);
 
-  if (loading) return <p>Carregando tecnicos...</p>;
+  if (loading)
+    return <p className="text-gray-200 m-10">Carregando técnicos...</p>;
 
   return (
     <div>

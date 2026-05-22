@@ -79,7 +79,8 @@ export function TicketsTechnician() {
   const ticketsOpen = tickets.filter((t) => t.status === "OPEN");
   const ticketsInProgress = tickets.filter((t) => t.status === "IN_PROGRESS");
   const ticketsClosed = tickets.filter((t) => t.status === "CLOSED");
-  if (loading) return <p>Carregando chamados...</p>;
+  if (loading)
+    return <p className="text-gray-200 m-10">Carregando chamados...</p>;
 
   return (
     <main className="p-6 bg-white min-h-screen">

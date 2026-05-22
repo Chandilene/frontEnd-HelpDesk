@@ -78,7 +78,8 @@ export function TableAllServices() {
     }
   }
 
-  if (loading) return <p>Carregando clientes...</p>;
+  if (loading)
+    return <p className="text-gray-200 m-10">Carregando clientes...</p>;
 
   return (
     <div>
