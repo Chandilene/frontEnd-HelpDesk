@@ -207,7 +207,7 @@ export function TicketDetailsAdmin() {
             <div className="w-8 h-8 rounded-full bg-blue-dark flex items-center justify-center">
               {ticket?.customer?.avatar ? (
                 <img
-                  src={`${api.defaults.baseURL}/files/${ticket.customer?.avatar}`}
+                  src={ticket.customer?.avatar}
                   alt={ticket.customer?.name}
                   className="w-full h-full object-cover rounded-4xl"
                 />
@@ -231,7 +231,7 @@ export function TicketDetailsAdmin() {
                 <div className="w-8 h-8 rounded-full bg-blue-dark flex items-center justify-center">
                   {ticket?.technician?.avatar ? (
                     <img
-                      src={`${api.defaults.baseURL}/files/${ticket.technician?.avatar}`}
+                      src={ticket.technician?.avatar}
                       alt={ticket.technician?.name}
                       className="w-full h-full object-cover rounded-4xl"
                     />

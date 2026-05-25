@@ -7,12 +7,11 @@ import inProgressIcon from "../assets/icons/clockWhiteIcon.svg";
 import { useNavigate } from "react-router";
 
 import type { Ticket } from "../dtos/tickets";
-// import type { TicketStatus } from "../dtos/ticketStatus";
+
 import { formatDate } from "../utils/formateDate";
 import { formatCurrency } from "../utils/formatCurrency";
 import { calculateTicketTotal } from "../utils/calculateTotal";
 import { getInitialsName } from "../utils/getInitialsName";
-import { api } from "../services/api";
 
 interface TicketCardProps {
   ticket: Ticket;
@@ -103,7 +102,7 @@ export function TicketCard({ ticket, onStatusChange }: TicketCardProps) {
             <div className="w-6 h-6 rounded-full bg-blue-dark flex items-center justify-center overflow-hidden shrink-0">
               {ticket.customer?.avatar ? (
                 <img
-                  src={`${api.defaults.baseURL}/files/${ticket.customer.avatar}`}
+                  src={ticket.customer.avatar}
                   alt={ticket.customer?.name}
                   className="w-full h-full object-cover"
                 />

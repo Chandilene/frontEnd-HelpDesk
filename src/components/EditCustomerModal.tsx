@@ -79,7 +79,7 @@ export function EditCustomerModal({
               <div className="w-12 h-12 rounded-full bg-blue-dark overflow-hidden flex items-center justify-center text-white font-bold">
                 {user.avatar ? (
                   <img
-                    src={`${api.defaults.baseURL}/files/${user.avatar}`}
+                    src={user.avatar}
                     className="w-full h-full object-cover"
                   />
                 ) : (

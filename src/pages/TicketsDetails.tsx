@@ -7,7 +7,7 @@ import { calculateTicketTotal } from "../utils/calculateTotal";
 import { getById } from "../services/tickets";
 
 // import { useAuth } from "../hooks/useAuth";
-import { api } from "../services/api";
+// import { api } from "../services/api";
 
 import { STATUS_VARIANTS } from "../constants/tickets";
 
@@ -135,7 +135,7 @@ export function TicketDetails() {
               <div className="w-8 h-8 rounded-full bg-blue-dark flex items-center justify-center">
                 {ticket?.technician?.avatar ? (
                   <img
-                    src={`${api.defaults.baseURL}/files/${ticket.technician?.avatar}`}
+                    src={ticket.technician?.avatar}
                     alt={ticket.technician?.name}
                     className="w-full h-full object-cover rounded-4xl"
                   />

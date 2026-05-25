@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Outlet } from "react-router";
 
 import { useAuth } from "../hooks/useAuth";
-import { api } from "../services/api";
 
 import { Sidebar } from "./Sidebar";
 import { ProfileModal } from "./ProfileModal";
@@ -66,7 +65,7 @@ export function AppLayout() {
               >
                 {auth.session?.user.avatar ? (
                   <img
-                    src={`${api.defaults.baseURL}/files/${auth.session.user.avatar}`}
+                    src={auth.session.user.avatar}
                     alt={auth.session.user.name}
                     className="w-full h-full object-cover"
                   />
@@ -144,7 +143,7 @@ export function AppLayout() {
             <div className="w-12 h-12 rounded-full bg-blue-dark flex items-center justify-center overflow-hidden shrink-0">
               {auth.session?.user?.avatar ? (
                 <img
-                  src={`${api.defaults.baseURL}/files/${auth.session.user.avatar}`}
+                  src={auth.session.user.avatar}
                   alt={auth.session.user.name}
                   className="w-full h-full object-cover"
                 />

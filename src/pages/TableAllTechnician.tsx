@@ -6,7 +6,7 @@ import plusWhiteIcon from "../assets/icons/plusWhite.svg";
 
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
-import { api } from "../services/api";
+
 import { getInitialsName } from "../utils/getInitialsName";
 import { useNavigate } from "react-router";
 
@@ -92,7 +92,7 @@ export function TableAllTechnician() {
                   <div className="w-7 h-7 rounded-full bg-blue-dark flex items-center justify-center shrink-0 overflow-hidden">
                     {technician.avatar ? (
                       <img
-                        src={`${api.defaults.baseURL}/files/${technician.avatar}`}
+                        src={technician.avatar}
                         alt={technician.name}
                         className="w-full h-full object-cover rounded-4xl"
                       />

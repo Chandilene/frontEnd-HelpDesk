@@ -109,7 +109,7 @@ export function TableAllCustomers() {
                   <div className="w-7 h-7 rounded-full bg-blue-dark flex items-center justify-center shrink-0 overflow-hidden">
                     {u.avatar ? (
                       <img
-                        src={`${api.defaults.baseURL}/files/${u.avatar}`}
+                        src={u.avatar}
                         alt={u.name}
                         className="w-full h-full object-cover rounded-4xl"
                       />
