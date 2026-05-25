@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AxiosError } from "axios";
+import Compressor from "compressorjs";
 import { api } from "../services/api";
 import { useAuth } from "../hooks/useAuth";
 
@@ -22,6 +23,15 @@ interface ApiErrorData {
   message: string;
 }
 
+const convertToBase64 = (file: File | Blob): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => resolve(fileReader.result as string);
+    fileReader.onerror = (error) => reject(error);
+  });
+};
+
 export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
   const auth = useAuth();
 
@@ -36,6 +46,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
 
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [avatarBase64, setAvatarBase64] = useState<string | null>(null);
 
   const userId = auth.session?.user.id;
   const userRole = auth.session?.user.role;
@@ -55,16 +66,36 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
     setAvatarFile(file);
     const imagePreview = URL.createObjectURL(file);
     setAvatarPreview(imagePreview);
+
+    new Compressor(file, {
+      quality: 0.6,
+      maxWidth: 600,
+      maxHeight: 600,
+      async success(result) {
+        try {
+          const base64 = await convertToBase64(result);
+          setAvatarBase64(base64); // Guarda o texto pronto
+        } catch (error) {
+          console.error("Erro ao converter imagem comprimida:", error);
+        }
+      },
+      error(err) {
+        console.error("Erro na compressão:", err.message);
+      },
+    });
   }
 
   async function handleUpdate() {
     try {
       let avatarName = auth.session?.user.avatar;
-      if (avatarFile) {
-        const formData = new FormData();
-        formData.append("avatar", avatarFile);
-
-        const response = await api.patch("/users/avatar", formData);
+      if (avatarBase64) {
+        const response = await api.patch("/users/avatar", {
+          avatar: avatarBase64,
+        });
+        avatarName = response.data.avatar;
+      } else if (avatarBase64 === "") {
+        // Se o usuário limpou a imagem na lixeira
+        const response = await api.patch("/users/avatar", { avatar: null });
         avatarName = response.data.avatar;
       }
 
@@ -146,7 +177,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                     />
                   ) : auth.session?.user.avatar ? (
                     <img
-                      src={`${api.defaults.baseURL}/files/${auth.session.user.avatar}`}
+                      src={auth.session.user.avatar}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -167,6 +198,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                   onClick={() => {
                     setAvatarPreview(null);
                     setAvatarFile(null);
+                    setAvatarBase64("");
                   }}
                   className="text-xs font-bold text-gray-200 flex items-center gap-2 bg-gray-500 px-4 py-2 rounded-lg hover:bg-gray-600 transition-all cursor-pointer"
                 >
