@@ -44,7 +44,6 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
-  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [avatarBase64, setAvatarBase64] = useState<string | null>(null);
 
@@ -63,7 +62,6 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setAvatarFile(file);
     const imagePreview = URL.createObjectURL(file);
     setAvatarPreview(imagePreview);
 
@@ -74,7 +72,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
       async success(result) {
         try {
           const base64 = await convertToBase64(result);
-          setAvatarBase64(base64); // Guarda o texto pronto
+          setAvatarBase64(base64);
         } catch (error) {
           console.error("Erro ao converter imagem comprimida:", error);
         }
@@ -94,7 +92,6 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
         });
         avatarName = response.data.avatar;
       } else if (avatarBase64 === "") {
-        // Se o usuário limpou a imagem na lixeira
         const response = await api.patch("/users/avatar", { avatar: null });
         avatarName = response.data.avatar;
       }
@@ -197,7 +194,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                 <button
                   onClick={() => {
                     setAvatarPreview(null);
-                    setAvatarFile(null);
+
                     setAvatarBase64("");
                   }}
                   className="text-xs font-bold text-gray-200 flex items-center gap-2 bg-gray-500 px-4 py-2 rounded-lg hover:bg-gray-600 transition-all cursor-pointer"
