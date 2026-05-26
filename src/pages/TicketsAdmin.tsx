@@ -112,7 +112,7 @@ export function TicketsAdmin() {
                   {formatCurrency(calculateTicketTotal(ticket.services))}
                 </td>
                 <td className="hidden md:text-gray-200 md:text-sm md:table-cell border-b border-gray-500">
-                  nome do cliente
+                  {ticket.customer?.name}
                 </td>
                 <td className="hidden md:text-gray-200 md:text-sm md:table-cell border-b border-gray-500">
                   {ticket.technician?.name || "Pendente"}
