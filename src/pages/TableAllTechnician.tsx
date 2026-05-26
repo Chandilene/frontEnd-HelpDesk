@@ -88,7 +88,7 @@ export function TableAllTechnician() {
           <tbody className="w-full ">
             {technicians.map((technician) => (
               <tr key={technician.id}>
-                <td className=" flex gap-1.5 items-center font-bold w-20 md:w-50 text-xs py-4 px-4 text-gray-200 border-b border-gray-500">
+                <td className=" flex gap-1.5 items-center font-bold w-20 md:w-50 text-xs py-4 px-0 text-gray-200 border-b border-gray-500">
                   <div className="w-7 h-7 rounded-full bg-blue-dark flex items-center justify-center shrink-0 overflow-hidden">
                     {technician.avatar ? (
                       <img
@@ -110,7 +110,7 @@ export function TableAllTechnician() {
                 <td className="hidden md:text-gray-200 md:text-xs md:table-cell font-semibold border-b border-gray-500">
                   {technician.email}
                 </td>
-                <td className=" text-sm text-gray-400 font-semibold w-36 md:table-cell md:w-52 border-b border-gray-500">
+                <td className=" text-sm text-gray-400 font-semibold w-36 md:table-cell md:w-52 border-b border-gray-500 px-1.5">
                   <ul className="flex gap-1">
                     {technician.schedule && technician.schedule.length > 0 ? (
                       <>
