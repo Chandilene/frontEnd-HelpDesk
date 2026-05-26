@@ -148,7 +148,7 @@ export function CreateTechnician() {
             />
             <Input
               required
-              className="mb-5"
+              className="mb-5 "
               type="password"
               legend="senha"
               placeholder="Defina a senha de acesso"
