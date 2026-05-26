@@ -3,7 +3,12 @@
 
 Um sistema completo de gerenciamento de chamados de suporte técnico, desenvolvido com foco em performance, experiência do usuário e controle de acessos baseado em perfis (**RBAC - Role-Based Access Control**). 
 
-Este projeto foi desenvolvido como um desafio prático da trilha Full-stack da **Rocketseat**.
+Este projeto foi desenvolvido como um desafio prático da trilha Full-stack da **Rocketseat**
+
+<img width="375" height="671" alt="image" src="https://github.com/user-attachments/assets/cbc40702-9cf8-4e7d-a77b-330925dad702" />
+<img width="377" height="666" alt="image" src="https://github.com/user-attachments/assets/ba570115-bd75-4a6b-8167-a1b304ec8967" />
+
+
 
 ---
 
