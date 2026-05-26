@@ -87,7 +87,7 @@ Passo a Passo
 
 Bash
 ```
-git clone [https://github.com/seu-usuario/HelpDesk.git](https://github.com/seu-usuario/HelpDesk.git)
+git clone [https://github.com/seu-usuario/frontEnd-HelpDesk.git](https://github.com/seu-usuario/frontEnd-HelpDesk.git)
 cd HelpDesk
 ```
 
