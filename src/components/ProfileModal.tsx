@@ -41,6 +41,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
   } | null>(null);
 
   const [name, setName] = useState(auth.session?.user.name || "");
+  const [email, setEmail] = useState(auth.session?.user.email || "");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -96,7 +97,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
         avatarName = response.data.avatar;
       }
 
-      const userUpdate: User = { name };
+      const userUpdate: User = { name, email };
       if (newPassword.trim()) {
         userUpdate.password = newPassword;
         userUpdate.old_password = currentPassword;
@@ -105,7 +106,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
       await api.put(`/users/${userId}`, userUpdate);
 
       await auth.updateProfile({
-        user: { name, avatar: avatarName },
+        user: { name, email, avatar: avatarName },
       });
 
       setAlertData({ msg: "Perfil atualizado com sucesso!", type: "success" });
@@ -213,9 +214,9 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                 <Input
                   type="email"
                   legend="E-mail"
-                  defaultValue={auth.session?.user.email}
-                  disabled
-                  className="focus:border-blue-dark border-b-gray-500 opacity-60"
+                  defaultValue={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="focus:border-blue-dark border-b-gray-500 "
                 />
                 <div className="flex justify-between items-end gap-1">
                   <div className="flex-1">
